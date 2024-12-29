@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scanner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl8DaopxOLYwyY0gJV2fUky4_X99ZFwJY&callback=initMap" async
+      defer></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Sidebar -->
+  <div class="flex min-h-screen">
+    <!-- Sidebar (hidden on mobile) -->
+    <aside class="w-64 bg-blue-900 text-white p-4 space-y-6 hidden sm:block">
+      <div>
+        <h1 class="text-xl font-bold">Admin Panel</h1>
+        <p class="text-sm">Cybersecurity Tools</p>
+      </div>
+      <nav>
+        <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
+        <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
+        <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
+        <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col w-full">
+      <!-- Header -->
+      <header class="bg-white shadow-md p-4 flex items-center justify-between">
+        <div class="flex items-center">
+          <!-- Button to toggle sidebar on mobile -->
+          <button id="sidebar-toggle" class="sm:hidden p-2 bg-blue-600 text-white rounded-md">
+            <i class="fas fa-bars"></i> <!-- Icon for mobile menu -->
+          </button>
+          <h2 class="text-2xl font-semibold ml-4">Scanner</h2>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" class="border rounded-md px-4 py-2" placeholder="Search...">
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-sm">Admin</span>
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full">
+          </div>
+        </div>
+      </header>
+
+      <!-- Form Section -->
+      <main class="flex-1 p-6 bg-gray-100">
+        <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
+          <h3 class="text-lg font-semibold mb-4">Objetivo de escaneo</h3>
+          <form action="/scan" method="post" class="space-y-4">
+            <div>
+              <label for="target" class="block text-sm font-medium text-gray-700">IP de destino o nombre de host</label>
+              <input type="text" name="target" id="target"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter a target">
+            </div>
+            <div>
+              <button type="submit" id="scanButton"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Escanear
+              </button>
+            </div>
+            <div id="result" class="bg-white rounded-lg shadow-lg p-6"></div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+    <script>
+      // Initialize Google Map
+      function initMap(lat, lon) {
+        const location = { lat: parseFloat(lat), lng: parseFloat(lon) };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: location,
+        });
+        new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+      }
+
+      document.getElementById('scanButton').addEventListener('click', function () {
+        const target = document.getElementById('target').value;
+
+        // Check if the input is valid
+        if (!target) {
+          alert('Please enter an IP address');
+          return;
+        }
+
+        // Llamada a la API de ipinfo.io para obtener información de la IP (sin token)
+        fetch(`https://ipinfo.io/${target}/json`)
+          .then(response => response.json())
+          .then(data => {
+            // Mostrar la información de la IP
+            const ipDetails = `
+                <h3 class="text-lg font-semibold mb-4">IP Information</h3>
+                <ul>
+                  <li><strong>IP:</strong> ${data.ip}</li>
+                  <li><strong>Ciudad:</strong> ${data.city}</li>
+                  <li><strong>Región:</strong> ${data.region}</li>
+                  <li><strong>País:</strong> ${data.country}</li>
+                  <li><strong>Ubicación:</strong> ${data.loc}</li>
+                  <li><strong>Organización:</strong> ${data.org}</li>
+                </ul>
+                <div id="map" class="w-full h-96 mt-6"></div>
+              `;
+
+            // Mostrar los detalles en el resultado
+            document.getElementById('result').innerHTML = ipDetails;
+
+            // Obtener la latitud y longitud para mostrar en el mapa
+            const [lat, lon] = data.loc.split(',');
+            initMap(lat, lon);  // Inicializar el mapa de Google con las coordenadas
+          })
+          .catch(error => {
+            console.error('Error al obtener los datos de la IP:', error);
+            alert('Hubo un problema al obtener los datos de la IP.');
+          });
+      });
+    </script>
+
+  <!-- Sidebar Mobile Version (Initially Hidden) -->
+  <div id="mobile-sidebar" class="fixed inset-0 bg-blue-900 text-white w-64 p-4 space-y-6 hidden sm:hidden">
+    <div>
+      <h1 class="text-xl font-bold">Admin Panel</h1>
+      <p class="text-sm">Cybersecurity Tools</p>
+    </div>
+    <nav>
+      <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
+      <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
+      <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
+      <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
+    </nav>
+  </div>
+
+  <script>
+    // Sidebar toggle for mobile view
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mobileSidebar = document.getElementById('mobile-sidebar');
+    sidebarToggle.addEventListener('click', () => {
+      mobileSidebar.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scanner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Sidebar -->
+  <div class="flex min-h-screen">
+    <aside class="w-64 bg-blue-900 text-white p-4 space-y-6 hidden md:block">
+      <div>
+        <h1 class="text-xl font-bold">Admin Panel</h1>
+        <p class="text-sm">Cybersecurity Tools</p>
+      </div>
+      <nav>
+        <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
+        <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
+        <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
+        <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <header class="bg-white shadow-md p-4 flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">Scanner</h2>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" class="border rounded-md px-4 py-2 w-full md:w-64" placeholder="Search...">
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-sm">Admin</span>
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full">
+          </div>
+        </div>
+      </header>
+
+      <!-- Form Section -->
+      <main class="flex-1 p-6 bg-gray-100">
+        <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
+          <div class="flex items-center mb-6">
+            <!-- Back Button with Icon -->
+            <a href="javascript:history.back()" class="flex items-center text-blue-600 hover:text-blue-800 text-sm">
+              <i class="fas fa-arrow-left mr-2"></i> Back
+            </a>
+          </div>
+          <h3 class="text-lg font-semibold mb-4">Action Results for Port {{ port }}</h3>
+          <h2>Generated Response</h2>
+          {% if advice %}
+          <ul>
+            <p>{{ advice }}</p>
+          </ul>
+          {% else %}
+          <p>No response generated.</p>
+          {% endif %}
+        </div>
+      </main>
+
+
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Toggle -->
+  <div class="md:hidden">
+    <button id="sidebarToggle" class="p-4 text-blue-900">
+      <i class="fas fa-bars text-2xl"></i>
+    </button>
+  </div>
+
+  <script>
+    // Sidebar toggle for mobile
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebar = document.querySelector("aside");
+
+    sidebarToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("hidden");
+    });
+  </script>
+
+</body>
+
+</html>

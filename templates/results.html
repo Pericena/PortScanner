@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Port Scan Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Sidebar -->
+  <div class="flex min-h-screen">
+    <aside class="w-64 bg-blue-900 text-white p-4 space-y-6 hidden md:block">
+      <div>
+        <h1 class="text-xl font-bold">Admin Panel</h1>
+        <p class="text-sm">Cybersecurity Tools</p>
+      </div>
+      <nav>
+        <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
+        <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
+        <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
+        <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <header class="bg-white shadow-md p-4 flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">Scanner</h2>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" class="border rounded-md px-4 py-2 w-full md:w-64" placeholder="Search...">
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-sm">Admin</span>
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full">
+          </div>
+        </div>
+      </header>
+
+
+      <!-- Results Section -->
+      <main class="p-6">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <h2 class="text-xl font-semibold mb-4">Open Ports</h2>
+          {% if open_ports %}
+          <div class="overflow-x-auto">
+            <table class="table-auto w-full border-collapse border border-gray-200 rounded-md">
+              <thead>
+                <tr class="bg-blue-600 text-white">
+                  <th class="px-4 py-2 text-left">Port</th>
+                  <th class="px-4 py-2 text-left">Name</th>
+                  <th class="px-4 py-2 text-left">Product</th>
+                  <th class="px-4 py-2 text-left">Version</th>
+                  <th class="px-4 py-2 text-left">Extra Info</th>
+                  <th class="px-4 py-2 text-left">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for port in open_ports %}
+                <tr class="border-b hover:bg-gray-50">
+                  <td class="px-4 py-2">{{ port['port'] }}</td>
+                  <td class="px-4 py-2">{{ port['name'] }}</td>
+                  <td class="px-4 py-2">{{ port['product'] }}</td>
+                  <td class="px-4 py-2">{{ port['version'] }}</td>
+                  <td class="px-4 py-2">{{ port['extrainfo'] }}</td>
+                  <td class="px-4 py-2">
+                    <form action="/action" method="POST" class="flex items-center">
+                      <input type="hidden" name="port" value="{{ port['port'] }}">
+                      <input type="hidden" name="product" value="{{ port['product'] }}">
+                      <input type="hidden" name="version" value="{{ port['version'] }}">
+                      <input type="hidden" name="extrainfo" value="{{ port['extrainfo'] }}">
+                      <button type="submit"
+                        class="flex items-center bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-600">
+                        <i class="ti ti-arrow-right-circle mr-2"></i> Take Action
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <p class="text-center text-gray-600">No open ports found.</p>
+          {% endif %}
+        </div>
+
+        <!-- Charts Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">Port Usage Report</h2>
+          <div class="flex flex-wrap gap-6">
+            <!-- Pie Chart -->
+            <div class="w-full lg:w-1/2">
+              <canvas id="pieChart"></canvas>
+            </div>
+            <!-- Bar Chart -->
+            <div class="w-full lg:w-1/2">
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      // Pie Chart Configuration
+      const pieCtx = document.getElementById('pieChart').getContext('2d');
+      const pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: ['HTTP', 'HTTPS', 'FTP', 'SSH', 'Other'],
+          datasets: [{
+            data: [40, 30, 10, 15, 5],
+            backgroundColor: ['#1d4ed8', '#22c55e', '#f59e0b', '#ef4444', '#6b7280'],
+          }]
+        },
+        options: {
+          responsive: true,
+        }
+      });
+
+      // Bar Chart Configuration
+      const barCtx = document.getElementById('barChart').getContext('2d');
+      const barChart = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Port 80', 'Port 443', 'Port 21', 'Port 22', 'Port 25'],
+          datasets: [{
+            label: 'Open Ports',
+            data: [20, 15, 5, 10, 3],
+            backgroundColor: '#4f46e5',
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+</body>
+
+</html>
