@@ -16,10 +16,10 @@ Bienvenido a **PortScanner**, una herramienta de análisis de vulnerabilidades d
 ## Capturas de Pantalla
 
 ### Panel Principal
-![Captura de la Interfaz Principal](https://raw.githubusercontent.com/Pericena/PortScanner/refs/heads/main/screencapture/screencapture-127-0-0-1-5200-2024-12-29-19_29_35.png?token=GHSAT0AAAAAAC2CONRAHOLXYNNN2FMM7BQ4Z3UMSCQ)
+![Captura de la Interfaz Principal](https://raw.githubusercontent.com/Pericena/PortScanner/refs/heads/main/screencapture/screencapture-127-0-0-1-5200-2024-12-29-19_29_35.png)
 
 ### Reporte de Vulnerabilidades
-![Reporte de Vulnerabilidades](https://raw.githubusercontent.com/Pericena/PortScanner/refs/heads/main/screencapture/screencapture-127-0-0-1-5200-scan-2024-12-29-19_33_20.png?token=GHSAT0AAAAAAC2CONRB4ATRQGF6TTQUGFWUZ3UMSEQ)
+![Reporte de Vulnerabilidades](https://raw.githubusercontent.com/Pericena/PortScanner/refs/heads/main/screencapture/screencapture-127-0-0-1-5200-scan-2024-12-29-19_33_20.png)
 
 ---
 
