@@ -16,13 +16,10 @@ Bienvenido a **PortScanner**, una herramienta de análisis de vulnerabilidades d
 ## Capturas de Pantalla
 
 ### Panel Principal
-![Captura de la Interfaz Principal](https://via.placeholder.com/800x400?text=Captura+de+Interfaz+Principal)
+![Captura de la Interfaz Principal](https://raw.githubusercontent.com/Pericena/PortScanner/refs/heads/main/screencapture/screencapture-127-0-0-1-5200-2024-12-29-19_29_35.png?token=GHSAT0AAAAAAC2CONRAHOLXYNNN2FMM7BQ4Z3UMSCQ)
 
 ### Reporte de Vulnerabilidades
-![Reporte de Vulnerabilidades](https://via.placeholder.com/800x400?text=Reporte+de+Vulnerabilidades)
-
-### Escaneo en Proceso
-![Escaneo en Proceso](https://via.placeholder.com/800x400?text=Escaneo+en+Proceso)
+![Reporte de Vulnerabilidades](https://raw.githubusercontent.com/Pericena/PortScanner/refs/heads/main/screencapture/screencapture-127-0-0-1-5200-scan-2024-12-29-19_33_20.png?token=GHSAT0AAAAAAC2CONRB4ATRQGF6TTQUGFWUZ3UMSEQ)
 
 ---
 
@@ -80,26 +77,6 @@ Bienvenido a **PortScanner**, una herramienta de análisis de vulnerabilidades d
 
 ---
 
-## Contribución
-
-¡Tu ayuda es bienvenida! Si encuentras un problema, abre un issue o envía un pull request.
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama para tu funcionalidad:
-   ```bash
-   git checkout -b mi-nueva-funcionalidad
-   ```
-3. Realiza los cambios y haz un commit:
-   ```bash
-   git commit -m "Añadida nueva funcionalidad"
-   ```
-4. Envía los cambios:
-   ```bash
-   git push origin mi-nueva-funcionalidad
-   ```
-5. Abre un pull request en GitHub.
-
----
 
 ## Redes Sociales
 
