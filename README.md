@@ -101,7 +101,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 ## Video de Demostración
 
-[![Video de Demostración](https://via.placeholder.com/800x400?text=Captura+de+Video)](https://www.youtube.com/watch?v=demo)
+[![Video de Demostración](https://www.facebook.com/reel/1695566091061439)](https://www.facebook.com/reel/1695566091061439)
 
 ---
 
