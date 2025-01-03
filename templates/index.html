@@ -14,11 +14,11 @@
 
   <!-- Sidebar -->
   <div class="flex min-h-screen">
-    <!-- Sidebar (hidden on mobile) -->
     <aside class="w-64 bg-blue-900 text-white p-4 space-y-6 hidden sm:block">
       <div>
         <h1 class="text-xl font-bold">Admin Panel</h1>
         <p class="text-sm">Cybersecurity Tools</p>
+        <p class="text-sm">By: Luishiño</p>
       </div>
       <nav>
         <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
@@ -27,15 +27,11 @@
         <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
       </nav>
     </aside>
-
-    <!-- Main Content -->
     <div class="flex-1 flex flex-col w-full">
-      <!-- Header -->
       <header class="bg-white shadow-md p-4 flex items-center justify-between">
         <div class="flex items-center">
-          <!-- Button to toggle sidebar on mobile -->
           <button id="sidebar-toggle" class="sm:hidden p-2 bg-blue-600 text-white rounded-md">
-            <i class="fas fa-bars"></i> <!-- Icon for mobile menu -->
+            <i class="fas fa-bars"></i>
           </button>
           <h2 class="text-2xl font-semibold ml-4">Scanner</h2>
         </div>
@@ -44,7 +40,7 @@
             <input type="text" class="border rounded-md px-4 py-2" placeholder="Search...">
           </div>
           <div class="flex items-center space-x-2">
-            <span class="text-sm">Admin</span>
+            <span class="text-sm">Luishiño</span>
             <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full">
           </div>
         </div>
@@ -75,7 +71,6 @@
   </div>
 
     <script>
-      // Initialize Google Map
       function initMap(lat, lon) {
         const location = { lat: parseFloat(lat), lng: parseFloat(lon) };
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -90,18 +85,13 @@
 
       document.getElementById('scanButton').addEventListener('click', function () {
         const target = document.getElementById('target').value;
-
-        // Check if the input is valid
         if (!target) {
           alert('Please enter an IP address');
           return;
         }
-
-        // Llamada a la API de ipinfo.io para obtener información de la IP (sin token)
         fetch(`https://ipinfo.io/${target}/json`)
           .then(response => response.json())
           .then(data => {
-            // Mostrar la información de la IP
             const ipDetails = `
                 <h3 class="text-lg font-semibold mb-4">IP Information</h3>
                 <ul>
@@ -114,13 +104,9 @@
                 </ul>
                 <div id="map" class="w-full h-96 mt-6"></div>
               `;
-
-            // Mostrar los detalles en el resultado
             document.getElementById('result').innerHTML = ipDetails;
-
-            // Obtener la latitud y longitud para mostrar en el mapa
             const [lat, lon] = data.loc.split(',');
-            initMap(lat, lon);  // Inicializar el mapa de Google con las coordenadas
+            initMap(lat, lon);
           })
           .catch(error => {
             console.error('Error al obtener los datos de la IP:', error);
@@ -128,8 +114,6 @@
           });
       });
     </script>
-
-  <!-- Sidebar Mobile Version (Initially Hidden) -->
   <div id="mobile-sidebar" class="fixed inset-0 bg-blue-900 text-white w-64 p-4 space-y-6 hidden sm:hidden">
     <div>
       <h1 class="text-xl font-bold">Admin Panel</h1>
@@ -144,7 +128,6 @@
   </div>
 
   <script>
-    // Sidebar toggle for mobile view
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const mobileSidebar = document.getElementById('mobile-sidebar');
     sidebarToggle.addEventListener('click', () => {

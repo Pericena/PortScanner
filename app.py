@@ -5,7 +5,6 @@ import openai
 
 app = Flask(__name__)
 
-# Cargar configuración desde un archivo YAML
 def load_config():
     try:
         with open("config.yaml", "r") as f:
@@ -20,7 +19,6 @@ def load_config():
 
 config = load_config()
 
-# Inicializar OpenAI si se encuentra en la configuración
 if 'openai_api_key' in config:
     openai.api_key = config['openai_api_key']
     print("[INFO] OpenAI API configurado correctamente.")
@@ -75,7 +73,6 @@ def action():
     
     if openai.api_key:
         try:
-            # Solicitar a OpenAI un análisis o respuesta sobre la información proporcionada
             solicitud = f"Análisis del puerto {port} con producto {product}, versión {version}, extra: {extra_info}."
             response = openai.Completion.create(
                 engine="text-davinci-003",
@@ -91,5 +88,5 @@ def action():
     return render_template('action.html', port=port, responses=responses, product=product, version=version, extra_info=extra_info)
 
 if __name__ == '__main__':
-    print("[INFO] Iniciando la aplicación en modo depuración.")
-    app.run(debug=True, port=5200)
+    print("[INFO] Aplicación iniciada en modo depuración.")
+    app.run(debug=True, host='0.0.0.0', port=5200)
