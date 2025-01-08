@@ -51,17 +51,19 @@
               <i class="fas fa-arrow-left mr-2"></i> Back
             </a>
           </div>
-          <h3 class="text-lg font-semibold mb-4">Action Results for Port {{ port }}</h3>
-          <h2>Generated Response</h2>
-          {% if advice %}
-          <ul>
-            <p>{{ advice }}</p>
-          </ul>
-          {% else %}
-          <p>No response generated.</p>
-          {% endif %}
+          <div class="container mx-auto mt-10">
+            <h1 class="text-2xl font-bold mb-5">Resultado del Análisis</h1>
+            <p><strong>Puerto:</strong> {{ port }}</p>
+            <p><strong>Producto:</strong> {{ product }}</p>
+            <p><strong>Versión:</strong> {{ version }}</p>
+            <p><strong>Información Extra:</strong> {{ extra_info }}</p>
+            <h2 class="text-lg font-bold mt-5">Análisis Generado:</h2>
+            <p class="bg-white p-4 rounded-md shadow-md">{{ advice }}</p>
+          </div>
         </div>
       </main>
+
+
 
 
     </div>

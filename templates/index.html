@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scanner</title>
   <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl8DaopxOLYwyY0gJV2fUky4_X99ZFwJY&callback=initMap" async
-      defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl8DaopxOLYwyY0gJV2fUky4_X99ZFwJY&callback=initMap"
+    async defer></script>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
@@ -18,7 +18,7 @@
       <div>
         <h1 class="text-xl font-bold">Admin Panel</h1>
         <p class="text-sm">Cybersecurity Tools</p>
-        <p class="text-sm">By: Luishiño</p>
+        <!-- <p class="text-sm">By: Luishiño</p> -->
       </div>
       <nav>
         <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
@@ -70,29 +70,29 @@
     </div>
   </div>
 
-    <script>
-      function initMap(lat, lon) {
-        const location = { lat: parseFloat(lat), lng: parseFloat(lon) };
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 12,
-          center: location,
-        });
-        new google.maps.Marker({
-          position: location,
-          map: map,
-        });
-      }
+  <script>
+    function initMap(lat, lon) {
+      const location = { lat: parseFloat(lat), lng: parseFloat(lon) };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: location,
+      });
+      new google.maps.Marker({
+        position: location,
+        map: map,
+      });
+    }
 
-      document.getElementById('scanButton').addEventListener('click', function () {
-        const target = document.getElementById('target').value;
-        if (!target) {
-          alert('Please enter an IP address');
-          return;
-        }
-        fetch(`https://ipinfo.io/${target}/json`)
-          .then(response => response.json())
-          .then(data => {
-            const ipDetails = `
+    document.getElementById('scanButton').addEventListener('click', function () {
+      const target = document.getElementById('target').value;
+      if (!target) {
+        alert('Please enter an IP address');
+        return;
+      }
+      fetch(`https://ipinfo.io/${target}/json`)
+        .then(response => response.json())
+        .then(data => {
+          const ipDetails = `
                 <h3 class="text-lg font-semibold mb-4">IP Information</h3>
                 <ul>
                   <li><strong>IP:</strong> ${data.ip}</li>
@@ -104,16 +104,16 @@
                 </ul>
                 <div id="map" class="w-full h-96 mt-6"></div>
               `;
-            document.getElementById('result').innerHTML = ipDetails;
-            const [lat, lon] = data.loc.split(',');
-            initMap(lat, lon);
-          })
-          .catch(error => {
-            console.error('Error al obtener los datos de la IP:', error);
-            alert('Hubo un problema al obtener los datos de la IP.');
-          });
-      });
-    </script>
+          document.getElementById('result').innerHTML = ipDetails;
+          const [lat, lon] = data.loc.split(',');
+          initMap(lat, lon);
+        })
+        .catch(error => {
+          console.error('Error al obtener los datos de la IP:', error);
+          alert('Hubo un problema al obtener los datos de la IP.');
+        });
+    });
+  </script>
   <div id="mobile-sidebar" class="fixed inset-0 bg-blue-900 text-white w-64 p-4 space-y-6 hidden sm:hidden">
     <div>
       <h1 class="text-xl font-bold">Admin Panel</h1>

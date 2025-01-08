@@ -47,7 +47,8 @@
       <!-- Results Section -->
       <main class="p-6">
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <h2 class="text-xl font-semibold mb-4">Open Ports</h2>
+          <h1 class="text-2xl font-bold mb-5">Resultados del Escaneo</h1>
+          <p class="text-lg">Objetivo: {{ target }}</p>
           {% if open_ports %}
           <div class="overflow-x-auto">
             <table class="table-auto w-full border-collapse border border-gray-200 rounded-md">
@@ -75,9 +76,10 @@
                       <input type="hidden" name="product" value="{{ port['product'] }}">
                       <input type="hidden" name="version" value="{{ port['version'] }}">
                       <input type="hidden" name="extrainfo" value="{{ port['extrainfo'] }}">
-                      <button type="submit"
-                        class="flex items-center bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-600">
-                        <i class="ti ti-arrow-right-circle mr-2"></i> Take Action
+
+
+                      <button type="submit" class="bg-blue-600 text-white px-3 py-2 rounded-md ml-3">
+                        <i class="ti ti-arrow-right-circle mr-2"></i>Ver Recomendación
                       </button>
                     </form>
                   </td>
@@ -90,6 +92,9 @@
           <p class="text-center text-gray-600">No open ports found.</p>
           {% endif %}
         </div>
+
+
+
 
         <!-- Charts Section -->
         <div class="bg-white rounded-lg shadow-lg p-6">
