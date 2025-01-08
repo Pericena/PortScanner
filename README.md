@@ -55,6 +55,9 @@ Bienvenido a **PortScanner**, una herramienta de análisis de vulnerabilidades d
 3. Configura las credenciales de OpenAI:
    - Crea un archivo `.env` en el directorio raíz.
    - Añade tu clave de API de OpenAI:
+   - https://cookbook.openai.com/
+   - https://platform.openai.com/settings/organization/general
+   - https://platform.openai.com/settings/organization/general
      ```
      OPENAI_API_KEY=tu_clave_api
      ```
