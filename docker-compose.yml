@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "80:5200"  # Mapea el puerto 5200 del contenedor al puerto 80 del host
+    environment:
+      - OPENAI_API_KEY=tu_clave_api  # Variable de entorno para claves sensibles
+    volumes:
+      - .:/app  # Mapea tu proyecto local en el contenedor
+    restart: unless-stopped  # Asegura que el contenedor se reinicie en caso de falla
