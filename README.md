@@ -71,6 +71,60 @@ Bienvenido a **PortScanner**, una herramienta de análisis de vulnerabilidades d
 
 ---
 
+# Instrucciones para levantar el Docker
+
+## Prerrequisitos
+
+Asegúrate de que tienes Docker y Docker Compose instalados en tu máquina:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+---
+
+## Pasos rápidos para levantar el proyecto
+
+### 1. **Construir y correr el contenedor**
+
+Desde la raíz del proyecto (donde están el `Dockerfile` y `docker-compose.yml`), ejecuta este comando:
+
+```bash
+docker-compose up -d
+```
+
+Este comando:
+- Construirá la imagen Docker automáticamente.
+- Levantará el contenedor y lo ejecutará en segundo plano.
+
+---
+
+### 2. **Acceder a la aplicación**
+
+- Una vez levantado el contenedor, abre tu navegador y ve a:  
+  **[http://localhost](http://localhost)**
+
+---
+
+### 3. **Detener el contenedor**
+
+Para detener el contenedor, utiliza este comando:
+
+```bash
+docker-compose down
+```
+
+---
+
+### 4. **Reiniciar el contenedor con cambios**
+
+Si realizas modificaciones al código, reconstruye y reinicia el contenedor con:
+
+```bash
+docker-compose up -d --build
+```
+
+---
+
 ## Uso
 
 1. Selecciona el rango de IP o dominio a analizar.
