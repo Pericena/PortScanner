@@ -21,10 +21,8 @@
         <!-- <p class="text-sm">By: Luishiño</p> -->
       </div>
       <nav>
-        <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
-        <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
-        <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
-        <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
+        <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Scanner</a>
+        <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Dashboard</a>
       </nav>
     </aside>
     <div class="flex-1 flex flex-col w-full">
@@ -49,14 +47,28 @@
       <!-- Form Section -->
       <main class="flex-1 p-6 bg-gray-100">
         <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
-          <h3 class="text-lg font-semibold mb-4">Objetivo de escaneo</h3>
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Iniciar Escaneo</h3>
+            <p class="text-gray-500 text-sm">Ingresa la IP o el nombre de host que deseas escanear</p>
+          </div>
           <form action="/scan" method="post" class="space-y-4">
             <div>
               <label for="target" class="block text-sm font-medium text-gray-700">IP de destino o nombre de host</label>
-              <input type="text" name="target" id="target"
-                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter a target">
+        <input type="text" name="target" id="target"
+          class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+          placeholder="Ej: 192.168.1.1" required />
             </div>
+<div class="mb-6">
+  <label for="scan_type" class="block text-sm font-medium text-gray-700 mb-2">Tipo de escaneo</label>
+  <select name="scan_type" id="scan_type"
+    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white transition duration-200 ease-in-out hover:bg-blue-50 focus:outline-none">
+    <option value="default">Análisis Exhaustivo (-sS -sV -O -A)</option>
+    <option value="fast">Escaneo Rápido (-F)</option>
+    <option value="tcp_syn">TCP SYN Stealth (-sS)</option>
+    <option value="service_detection">Detección de Servicios (-sV)</option>
+  </select>
+</div>
+
             <div>
               <button type="submit" id="scanButton"
                 class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -120,10 +132,8 @@
       <p class="text-sm">Cybersecurity Tools</p>
     </div>
     <nav>
-      <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
-      <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
-      <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
-      <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
+      <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Scanner</a>
+      <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Dashboard</a>
     </nav>
   </div>
 

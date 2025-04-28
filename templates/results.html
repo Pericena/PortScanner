@@ -22,8 +22,6 @@
       <nav>
         <a href="/" class="block px-4 py-2 text-white bg-blue-800 rounded-md mb-2">Dashboard</a>
         <a href="/scan" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Scanner</a>
-        <a href="/vulnerabilities" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Vulnerabilidad</a>
-        <a href="/Ajustes" class="block px-4 py-2 hover:bg-blue-700 rounded-md">Ajustes</a>
       </nav>
     </aside>
 
@@ -42,7 +40,6 @@
           </div>
         </div>
       </header>
-
 
       <!-- Results Section -->
       <main class="p-6">
@@ -93,23 +90,27 @@
           {% endif %}
         </div>
 
-
-
-
         <!-- Charts Section -->
         <div class="bg-white rounded-lg shadow-lg p-6">
-          <h2 class="text-xl font-semibold mb-4">Port Usage Report</h2>
-          <div class="flex flex-wrap gap-6">
+          <h2 class="text-2xl font-semibold mb-6 text-center">Port Usage Report</h2>
+
+          <div class="flex flex-col lg:flex-row gap-8">
             <!-- Pie Chart -->
-            <div class="w-full lg:w-1/2">
-              <canvas id="pieChart"></canvas>
+            <div class="flex-1 flex justify-center">
+              <div class="w-72 h-72">
+                <canvas id="pieChart" class="w-full h-full"></canvas>
+              </div>
             </div>
+
             <!-- Bar Chart -->
-            <div class="w-full lg:w-1/2">
-              <canvas id="barChart"></canvas>
+            <div class="flex-1 flex justify-center">
+              <div class="w-72 h-72">
+                <canvas id="barChart" class="w-full h-full"></canvas>
+              </div>
             </div>
           </div>
         </div>
+
       </main>
     </div>
     <script>
